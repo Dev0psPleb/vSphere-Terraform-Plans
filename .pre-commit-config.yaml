@@ -1,0 +1,47 @@
+repos:
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.62.3 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terraform_fmt
+      args:
+        - --args=-write=true
+        - --args=-recursive
+    - id: terraform_validate
+      args:
+        - --args=-json
+    - id: checkov
+      args: [
+        "-d", "./terraform",
+        "--framework", "terraform"
+      ]
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+  - id: detect-aws-credentials
+  - id: detect-private-key
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+    # Disabled because yapf is better for our purpose
+    # - id: autopep8-wrapper
+    - id: check-added-large-files
+    - id: check-ast
+    - id: check-case-conflict
+    - id: check-executables-have-shebangs
+    - id: check-json
+    - id: check-shebang-scripts-are-executable
+    - id: check-toml
+    - id: check-vcs-permalinks
+    - id: debug-statements
+    - id: fix-byte-order-marker
+    - id: end-of-file-fixer
+      exclude: 'static'
+    - id: fix-encoding-pragma
+      args: ['--remove']
+    - id: check-merge-conflict
+    - id: check-symlinks
+    - id: trailing-whitespace
+    - id: mixed-line-ending
+      args: ['--fix=lf']

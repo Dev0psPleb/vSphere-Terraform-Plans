@@ -1,0 +1,46 @@
+---
+- name: Get authentication cooke
+  uri:
+  url: "https://{{ vcenter_hostname }}/rest/com/vmware/cis/session"
+  method: POST
+  user: "{{ vcenter_user }}"
+  password: "{{ vcenter_password }}"
+  validate_certs: no
+  force_basic_auth: yes
+  status_code: 200, 404
+  timeout: 10
+  delegate_to: localhost
+  register: session_cookie
+
+- name: Generate CSR
+  uri:
+  url: "https://{{ vcenter_hostname }}/api/vcenter/certificate-management/vcenter/tls-csr"
+  method: POST
+  validate_certs: no
+  return_content: yes
+  status_code: 200
+  timeout: 10
+  headers:
+    vmware-api-session-id: "{{ session_cookie.cookies['vnware-api-session-id'] }}"
+    Content-Type: application/json
+  body_format: json
+  body: {
+    "common_name": "{{  common_name }}",
+    "country": "{{ country }}",
+    "email_address": "{{ email_address }}",
+    "key_size": "{{ key_size }}",
+    "locality": "{{ locality }}",
+    "organization": "{{ organization }}",
+    "organization_unit": "{{ organization_unit }}",
+    "state_or_province": "{{ state_or_province }}",
+    "subject_alt_name": [
+      "DNS.1 = {{ dns_1 }}",
+      "DNS.2 = {{ dns_2 }}",
+      "DNS.3 = {{ dns_3 }}",
+      "IP.1 = {{  ip_1 }}"
+    ]
+  }
+  delegate_to: localhost
+  register: csr_output
+  ignore_errors: true
+

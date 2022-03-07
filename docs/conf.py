@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
-# vSphere Terraform Plan documentation build configuration file, created by
-# sphinx-quickstart on Mon Mar  7 15:53:01 2022.
+# vSphere Terraform Templates documentation build configuration file, created by
+# sphinx-quickstart on Mon Mar  7 16:13:36 2022.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -19,7 +20,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import sphinx_rtd_theme
 
 # -- General configuration ------------------------------------------------
 
@@ -30,7 +31,14 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ['sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.viewcode',
+    'sphinx_rtd_theme']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -45,7 +53,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'vSphere Terraform Plan'
+project = 'vSphere Terraform Templates'
 copyright = '2022, Ralph Brynard'
 author = 'Ralph Brynard'
 
@@ -74,7 +82,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
+todo_include_todos = True
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -82,8 +90,8 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_them'
-
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = ["_themes",]
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -111,7 +119,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'vSphereTerraformPlandoc'
+htmlhelp_basename = 'vSphereTerraformTemplatesdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -138,7 +146,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'vSphereTerraformPlan.tex', 'vSphere Terraform Plan Documentation',
+    (master_doc, 'vSphereTerraformTemplates.tex', 'vSphere Terraform Templates Documentation',
      'Ralph Brynard', 'manual'),
 ]
 
@@ -148,7 +156,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'vsphereterraformplan', 'vSphere Terraform Plan Documentation',
+    (master_doc, 'vsphereterraformtemplates', 'vSphere Terraform Templates Documentation',
      [author], 1)
 ]
 
@@ -159,7 +167,31 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'vSphereTerraformPlan', 'vSphere Terraform Plan Documentation',
-     author, 'vSphereTerraformPlan', 'One line description of project.',
+    (master_doc, 'vSphereTerraformTemplates', 'vSphere Terraform Templates Documentation',
+     author, 'vSphereTerraformTemplates', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+
+
+# -- Options for Epub output ----------------------------------------------
+
+# Bibliographic Dublin Core info.
+epub_title = project
+epub_author = author
+epub_publisher = author
+epub_copyright = copyright
+
+# The unique identifier of the text. This can be a ISBN number
+# or the project homepage.
+#
+# epub_identifier = ''
+
+# A unique identification for the text.
+#
+# epub_uid = ''
+
+# A list of files that should not be packed into the epub file.
+epub_exclude_files = ['search.html']
+
+

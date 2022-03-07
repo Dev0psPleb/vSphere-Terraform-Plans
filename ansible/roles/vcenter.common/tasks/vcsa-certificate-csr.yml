@@ -43,4 +43,3 @@
   delegate_to: localhost
   register: csr_output
   ignore_errors: true
-

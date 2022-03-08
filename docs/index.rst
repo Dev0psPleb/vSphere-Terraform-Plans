@@ -10,6 +10,9 @@ Welcome to vSphere Terraform Templates's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Installation
 
 
 Indices and tables

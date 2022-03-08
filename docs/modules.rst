@@ -14,9 +14,9 @@ VC Build Module
 The build module will parse user-provided input variables to define the values in the vctemplate.json.tpl file:
 
 vctemplate.json.tpl
-###################
+===================
 
-..code-block:: json
+.. code-block:: json
 
     {
         "__version": "2.13.0",

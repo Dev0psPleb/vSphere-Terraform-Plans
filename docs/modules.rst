@@ -15,7 +15,7 @@ The build module will parse user-provided input variables to define the values i
 
 vctemplate.json.tpl
 ###################
-`
+``
 {
     "__version": "2.13.0",
     "__comments": "Sample template to deploy a vCenter Server Appliance with an embedded Platform Services Controller on an ESXi host.",
@@ -63,4 +63,4 @@ vctemplate.json.tpl
     }
 }
 
-`
+``
